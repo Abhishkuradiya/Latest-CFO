@@ -1,0 +1,31 @@
+/* cmdk command palette styling variables */
+[cmdk-root] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+[cmdk-input] {
+  font-family: var(--font-sans);
+  border: none;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  color: var(--color-foreground);
+}
+
+[cmdk-item] {
+  content-visibility: auto;
+  cursor: pointer;
+  user-select: none;
+}
+
+[cmdk-item][data-selected='true'] {
+  background-color: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+[cmdk-item][data-disabled='true'] {
+  color: var(--color-muted-foreground);
+  cursor: not-allowed;
+}

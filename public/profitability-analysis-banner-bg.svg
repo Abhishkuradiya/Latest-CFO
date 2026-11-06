@@ -1,0 +1,92 @@
+<svg width="1200" height="180" viewBox="0 0 1200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="0.48" stop-color="#F0F7FF"/>
+      <stop offset="0.72" stop-color="#EAF3FF"/>
+      <stop offset="1" stop-color="#F2ECFF"/>
+    </linearGradient>
+    <linearGradient id="blob1" x1="700" y1="0" x2="1040" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CBE8FF" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#DDEBFF" stop-opacity=".25"/>
+    </linearGradient>
+    <linearGradient id="blob2" x1="900" y1="20" x2="1180" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCCBFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#EEDCFF" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A9D5FF"/>
+      <stop offset="1" stop-color="#6EA8FF"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#7C6AE8"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#72D9B4"/>
+      <stop offset="1" stop-color="#29B78C"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#8AA7C7" flood-opacity=".14"/>
+    </filter>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="180" rx="24" fill="url(#bg)"/>
+
+  <!-- abstract flowing shapes -->
+  <path d="M650 0H1200V180H610C710 137 755 108 790 72C822 39 838 17 850 0H650Z" fill="url(#blob1)"/>
+  <path d="M930 0H1200V180H820C900 135 943 100 965 61C979 36 977 17 930 0Z" fill="url(#blob2)"/>
+
+  <circle cx="1030" cy="31" r="31" fill="#B8D9FF" opacity=".48"/>
+  <circle cx="1147" cy="144" r="40" fill="#C8B8FF" opacity=".22"/>
+  <circle cx="793" cy="52" r="15" fill="#B9E6FF" opacity=".7"/>
+  <circle cx="1085" cy="111" r="20" fill="#BFE9D9" opacity=".5"/>
+
+  <!-- connector paths -->
+  <path d="M815 92C866 92 861 57 913 57H960" stroke="#87B9F5" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 8" opacity=".75"/>
+  <path d="M975 84H1042C1071 84 1074 112 1102 112H1148" stroke="#9D8BEA" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 8" opacity=".65"/>
+  <path d="M1038 57V95" stroke="#86BDF1" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+
+  <!-- left document tile -->
+  <g filter="url(#shadow)">
+    <rect x="742" y="50" width="82" height="82" rx="14" fill="white" fill-opacity=".92"/>
+    <rect x="762" y="68" width="42" height="8" rx="4" fill="#D5E4F8"/>
+    <rect x="762" y="84" width="28" height="7" rx="3.5" fill="#E2ECF8"/>
+    <rect x="762" y="99" width="35" height="7" rx="3.5" fill="#E2ECF8"/>
+    <rect x="762" y="115" width="18" height="6" rx="3" fill="#A9CBF2"/>
+  </g>
+
+  <!-- top blue node -->
+  <g filter="url(#shadow)">
+    <rect x="925" y="16" width="58" height="58" rx="13" fill="url(#blue)"/>
+    <path d="M954 31V52M943.5 41.5H964.5" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- purple analytics node -->
+  <g filter="url(#shadow)">
+    <rect x="1005" y="67" width="58" height="58" rx="13" fill="url(#purple)"/>
+    <path d="M1022 106L1032 96L1040 101L1050 84" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1022" cy="106" r="3.5" fill="white"/>
+    <circle cx="1032" cy="96" r="3.5" fill="white"/>
+    <circle cx="1040" cy="101" r="3.5" fill="white"/>
+    <circle cx="1050" cy="84" r="3.5" fill="white"/>
+  </g>
+
+  <!-- green folder/data node -->
+  <g filter="url(#shadow)">
+    <path d="M1090 88H1111L1118 95H1158C1164 95 1168 99 1168 105V137C1168 143 1164 147 1158 147H1090C1084 147 1080 143 1080 137V98C1080 92 1084 88 1090 88Z" fill="url(#green)"/>
+    <path d="M1096 108H1151" stroke="white" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+    <path d="M1096 121H1139" stroke="white" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+  </g>
+
+  <!-- small floating nodes -->
+  <circle cx="876" cy="115" r="11" fill="#BDE3FF" opacity=".85"/>
+  <circle cx="876" cy="115" r="5" fill="#75B5F4"/>
+  <circle cx="1173" cy="61" r="8" fill="#A7DCCB" opacity=".7"/>
+
+  <!-- subtle glow -->
+  <ellipse cx="1050" cy="85" rx="180" ry="90" fill="#D8E9FF" opacity=".16" filter="url(#blur)"/>
+</svg>
