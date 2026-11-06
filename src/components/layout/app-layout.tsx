@@ -7,6 +7,7 @@ import { ConnectorRouteGuard } from './connector-route-guard';
 import { useSidebarStore } from '@/store/sidebar-store';
 
 import { usePathname } from 'next/navigation';
+import { PageLoadingSkeleton } from '@/components/common/loading-skeleton';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -87,7 +88,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                 <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">{pageTitle}</h1>
               </section>
             )}
-            <Suspense fallback={<div className="text-xs font-bold text-slate-400 select-none">Loading dashboard contents...</div>}>
+            <Suspense fallback={<PageLoadingSkeleton />}>
               <ConnectorRouteGuard>
                 {children}
               </ConnectorRouteGuard>

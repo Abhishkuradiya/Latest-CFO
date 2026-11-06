@@ -188,10 +188,10 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
   }, [data]);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 p-4 md:p-8 space-y-8 font-sans">
+    <div className="min-h-screen bg-slate-50/50 p-0 space-y-8 font-sans">
       {/* 1. HEADER SECTION */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
-        <div>
+      <div className="flex flex-col gap-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs lg:flex-row lg:items-start lg:justify-between">
+        <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
             <span className="p-2.5 rounded-xl bg-blue-600 text-white shadow-xs">
               <BarChart3 className="w-6 h-6" />
@@ -204,9 +204,9 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
         </div>
 
         {/* Controls */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex w-full min-w-0 flex-col items-stretch gap-2.5 lg:w-auto lg:items-end">
           {/* Preset Buttons */}
-          <div className="flex items-center p-1 bg-slate-100 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-700">
+          <div className="flex w-full items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-100 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-700 lg:w-auto lg:justify-start">
             <button
               onClick={() => handlePeriodPresetChange(`Q2_${new Date().getFullYear()}`)}
               className={cn('px-3 py-1.5 rounded-lg transition-all', periodPreset === `Q2_${new Date().getFullYear()}` ? 'bg-white text-slate-900 shadow-xs font-bold' : 'hover:text-slate-900')}
@@ -227,33 +227,35 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </button>
           </div>
 
-          {/* Date Picker Inputs */}
-          <div className="flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 text-xs">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="bg-transparent font-semibold text-slate-800 focus:outline-none"
-            />
-            <span className="text-slate-400">to</span>
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              className="bg-transparent font-semibold text-slate-800 focus:outline-none"
-            />
-          </div>
+          <div className="flex w-full items-center gap-2 lg:w-auto">
+            {/* Date Picker Inputs */}
+            <div className="flex min-w-0 flex-1 items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 text-xs lg:flex-none">
+              <Calendar className="w-3.5 h-3.5 shrink-0 text-slate-500" />
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="min-w-0 flex-1 bg-transparent font-semibold text-slate-800 focus:outline-none lg:w-32 lg:flex-none"
+              />
+              <span className="shrink-0 text-slate-400">to</span>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="min-w-0 flex-1 bg-transparent font-semibold text-slate-800 focus:outline-none lg:w-32 lg:flex-none"
+              />
+            </div>
 
-          {/* Refresh Button */}
-          <button
-            onClick={fetchDashboardData}
-            disabled={loading}
-            className="p-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-xs flex items-center justify-center disabled:opacity-50"
-            title="Refresh Financial Data"
-          >
-            <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
-          </button>
+            {/* Refresh Button */}
+            <button
+              onClick={fetchDashboardData}
+              disabled={loading}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-xs disabled:opacity-50"
+              title="Refresh Financial Data"
+            >
+              <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -315,9 +317,9 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
       {data && (
         <>
           {/* 3. EXECUTIVE KPI ROW */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {/* 1. Revenue Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Revenue</span>
                 <button
@@ -328,7 +330,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-slate-900 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-slate-900 tracking-tight">
                 {formatCurr(prof.revenue?.value)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">
@@ -340,7 +342,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </div>
 
             {/* 2. Gross Profit Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Gross Profit</span>
                 <button
@@ -350,7 +352,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-emerald-700 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-emerald-700 tracking-tight">
                 {formatCurr(prof.grossProfit?.value)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">
@@ -360,7 +362,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </div>
 
             {/* 3. Gross Margin Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Gross Margin</span>
                 <button
@@ -370,7 +372,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-blue-600 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-blue-600 tracking-tight">
                 {formatPct(prof.grossMarginPct?.value ?? prof.grossMargin?.value)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">
@@ -380,7 +382,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </div>
 
             {/* 4. Operating Profit Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Operating Profit</span>
                 <button
@@ -390,7 +392,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-slate-900 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-slate-900 tracking-tight">
                 {formatCurr(prof.operatingProfit?.value)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">
@@ -400,7 +402,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </div>
 
             {/* 5. Net Profit Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Net Profit</span>
                 <button
@@ -410,7 +412,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-indigo-600 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-indigo-600 tracking-tight">
                 {formatCurr(prof.netProfit?.value)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">
@@ -420,7 +422,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
             </div>
 
             {/* 6. Cash Balance Card */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
+            <div className="min-w-0 overflow-hidden bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all group">
               <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
                 <span>Cash Balance</span>
                 <button
@@ -430,7 +432,7 @@ export function CfoExecutiveDashboard({ initialTenantId }: CfoExecutiveDashboard
                   <Info className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <div className="text-2xl font-extrabold text-emerald-600 tracking-tight">
+              <div className="min-w-0 whitespace-nowrap text-xl xl:text-2xl font-extrabold text-emerald-600 tracking-tight">
                 {formatCurr(data?.metrics?.cash?.value ?? wc.cash?.value ?? wc.cash)}
               </div>
               <div className="flex items-center justify-between text-[11px] pt-2 border-t border-slate-100">

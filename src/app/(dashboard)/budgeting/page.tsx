@@ -26,6 +26,7 @@ import {
   Wallet,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { PageLoadingSkeleton } from '@/components/common/loading-skeleton';
 
 const MONTH_NAMES = [
   'January',
@@ -1676,10 +1677,7 @@ export default function BudgetingPage() {
       )}
 
       {isLoading && (
-        <div className="rounded-md border border-slate-200 bg-white p-10 text-center text-sm text-slate-500">
-          <RefreshCw className="mx-auto mb-3 h-5 w-5 animate-spin text-sky-700" />
-          Loading financial data from Xero…
-        </div>
+        <PageLoadingSkeleton variant="forecast" />
       )}
 
       {data && !data.connected && !isLoading && (

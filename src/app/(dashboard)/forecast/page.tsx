@@ -17,6 +17,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PageLoadingSkeleton } from '@/components/common/loading-skeleton';
 
 export type ScenarioType = 'average' | 'best' | 'worst';
 export type PeriodType = 'ttm' | 'ytd' | 'quarter' | 'this_month';
@@ -841,6 +842,9 @@ export default function ForecastPage() {
   ]);
 
   if (!data) {
+    if (isLoading) {
+      return <PageLoadingSkeleton variant="forecast" />;
+    }
     return (
       <main className="min-h-screen bg-slate-50 p-4 sm:p-6">
         <section className="mx-auto flex min-h-64 max-w-3xl flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-8 text-center shadow-xs">

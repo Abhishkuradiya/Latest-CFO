@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { AlertTriangle, Calendar, CheckCircle2, Clock3, HelpCircle, RefreshCw, Sparkles, WalletCards } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PageLoadingSkeleton } from '@/components/common/loading-skeleton';
 
 type Movement = { id: string; party: string; reference: string; amount: number; dueDate: string | null; expectedDate: string; status: string; type: 'receipt' | 'payment'; currency: string };
 type AnalysisSection = { title: string; items: string[] };
@@ -58,6 +59,7 @@ export default function ThirteenWeekCashFlowPage() {
   return <div className="space-y-5 text-slate-800">
     <div className="flex flex-wrap items-center justify-between gap-3"><div><div className="flex items-center gap-2 text-xs font-semibold text-slate-500"><Calendar className="h-4 w-4" /> Forecast period</div><h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-800">13-Week Cash Forecast</h1><p className="mt-1 text-xs text-slate-500">Database-backed base forecast from the connected Xero organisation.</p></div><div className="flex flex-wrap items-center gap-2"><span className="rounded-xl border border-blue-100 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700">Base Forecast</span><button onClick={load} disabled={loading} className="flex items-center gap-2 rounded-xl bg-blue-600 px-3.5 py-2 text-xs font-bold text-white hover:bg-blue-700"><RefreshCw className={cn('h-3.5 w-3.5', loading && 'animate-spin')} /> Refresh Forecast</button></div></div>
     <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs"><span><b>Period:</b> {data ? `${date(data.period.start)} – ${date(data.period.end)}` : 'Loading'}</span><span><b>Last calculated:</b> {data ? date(data.calculatedAt.slice(0, 10)) : 'Loading'}</span><span className={cn('rounded-full border px-2 py-1 font-semibold', data?.dataQuality.ready ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-amber-200 bg-amber-50 text-amber-700')}>{data?.dataQuality.ready ? 'Data ready' : 'Partial data'}</span></div>
+    {loading && <PageLoadingSkeleton variant="cash" />}
     {error && <div className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">{error}</div>}
     {!loading && !data?.connected && <EmptyState title="No Xero organisation connected" text="Connect a Xero organisation and synchronise its bank and invoice data before calculating a forecast." />}
     {data && <>
